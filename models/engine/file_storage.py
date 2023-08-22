@@ -66,6 +66,13 @@ class FileStorage:
                         for x, y in obj_dict.items()}
             FIleStorage.__objects = obj_dict
 
+    def delete(self, obj=None):
+        """define delete that deletes obj from __objects"""
+        if obj is not None:
+            key = obj.__class__.__name__ + '.' + obj.id
+            if key in self.__objects:
+                del self.__objects[key]
+
     def attributes(self):
         """Returns the valid attributes and their types for classname."""
         attributes = {
@@ -103,3 +110,7 @@ class FileStorage:
                          "text": str}
         }
         return attributes
+
+    def close(self):
+        """call reload() for decserialization"""
+        self.reload()
