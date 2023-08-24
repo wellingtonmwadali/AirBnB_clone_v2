@@ -7,11 +7,11 @@ import models.place import place_amenity
 
 
 class Amenity(BaseModel, Base):
-    """class amenity that takes 2 arguments:
+    """class amenity that represents amenity for SQL db:
     Attributes:
         name: name
         place_amenities: place
     """
     __tablename__ = "amenities"
     name = Column(String(128), nullable=False)
-    place_amenities = relationship("Place", secondary=place_amenity)
+    place_amenities = relationship("Place", secondary="place_amenity")
