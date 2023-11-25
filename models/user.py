@@ -2,7 +2,6 @@
 """ class User"""
 
 from models.base_model import BaseModel, Base
-from os import getenv
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column
 from sqlalchemy import String
@@ -18,11 +17,10 @@ class User(BaseModel, Base):
         l_name: user's last name
         places: user-pace relationship
         reviews: user-review"""
-    if getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = "users"
         email = Column(String(128), nullable=False)
-        passwd = Column(String(128), nullable=False)
-        f_name = Column(String(128), nullable=True)
-        l_name = Column(String(128), nullable=True)
+        password = Column(String(128), nullable=False)
+        first_name = Column(String(128), nullable=True)
+        last_name = Column(String(128), nullable=True)
         places = relationship("Place", backref="user", cascade="delete")
         reviews = relationship("Review", backref="user", cascade="delete")
